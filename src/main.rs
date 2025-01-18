@@ -3,37 +3,40 @@ use std::path::Path;
 use std::process::{exit, Command};
 
 fn main() {
-    let args = env::args().skip(1).collect();
+    let mut args: Vec<String> = env::args().skip(1).collect();
 
     if Path::new("Justfile").exists() {
-        return run("just", &args);
+        return run("just", args);
     }
 
     if Path::new("Makefile").exists() {
-        return run("make", &args);
+        return run("make", args);
     }
 
     if Path::new("pnpm-lock.yaml").exists() {
-        return run("pnpm run", &args);
+        args.insert(0, "run".to_owned());
+        return run("pnpm", args);
     }
 
     if Path::new("yarn.lock").exists() {
-        return run("yarn run", &args);
+        args.insert(0, "run".to_owned());
+        return run("yarn", args);
     }
 
     if Path::new("package.json").exists() {
-        return run("npm run", &args);
+        args.insert(0, "run".to_owned());
+        return run("npm", args);
     }
 
     if Path::new("Cargo.toml").exists() {
-        return run("cargo", &args);
+        return run("cargo", args);
     }
 
     eprintln!("No recognized file found to identify the command to run");
     exit(1);
 }
 
-fn run(command: &str, args: &Vec<String>) {
+fn run(command: &str, args: Vec<String>) {
     let status = Command::new(command)
         .args(args)
         .spawn()
