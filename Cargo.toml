@@ -2,6 +2,9 @@
 name = "nw"
 version = "0.1.0"
 edition = "2021"
+authors = ["Sasha Koss <koss@nocorp.me>"]
+description = "CLI that detects and runs corresponding script runner"
+license = "MIT"
 
 [[bin]]
 name = "nw"
