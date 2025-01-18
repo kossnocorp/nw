@@ -40,7 +40,7 @@ fn run(command: &str, args: Vec<String>) {
     let status = Command::new(command)
         .args(args)
         .spawn()
-        .expect(&format!("Failed to start {command}"))
+        .expect(&format!("Failed to run {command}"))
         .wait()
         .expect(&format!("Failed to wait on {command}"));
 

@@ -1,9 +1,9 @@
 [package]
 name = "nw"
-version = "0.2.0"
+version = "0.3.0"
 edition = "2021"
 authors = ["Sasha Koss <koss@nocorp.me>"]
-description = "CLI that detects and runs corresponding script runner"
+description = "A tiny CLI that finds and runs the right command runner"
 license = "MIT"
 
 [[bin]]
