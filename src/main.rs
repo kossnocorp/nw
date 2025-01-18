@@ -25,6 +25,10 @@ fn main() {
         return run("npm run", &args);
     }
 
+    if Path::new("Cargo.toml").exists() {
+        return run("cargo", &args);
+    }
+
     eprintln!("No recognized file found to identify the command to run");
     exit(1);
 }
